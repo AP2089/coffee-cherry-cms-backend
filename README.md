@@ -2,6 +2,12 @@
 
 API каталога для CMS (CRUD кофе, uploads, auth).
 
+## Демо
+
+- URL: https://cms.coffee-cherry.proskurin.site
+- Логин: `guest`
+- Пароль: `guest`
+
 ## Переменные окружения
 
 - `PORT` — порт API, по умолчанию `3011`.
