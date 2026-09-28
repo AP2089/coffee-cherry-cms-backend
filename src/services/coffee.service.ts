@@ -185,32 +185,6 @@ export async function getCoffeeBySlug(slug: string, locale?: string): Promise<Co
   return applyTranslation(toCoffeeDTO(coffee), locale)
 }
 
-export async function getCoffeeById(id: string): Promise<CoffeeDTO> {
-  const coffee = await Coffee.findById(id).lean().exec()
-
-  if (!coffee) {
-    throw new AppError('Coffee not found', 404)
-  }
-
-  return toCoffeeDTO(coffee)
-}
-
-export async function decreaseStock(id: string, quantity: number): Promise<CoffeeDTO> {
-  const coffee = await Coffee.findOneAndUpdate(
-    { _id: id, stock: { $gte: quantity } },
-    { $inc: { stock: -quantity } },
-    { new: true },
-  )
-    .lean()
-    .exec()
-
-  if (!coffee) {
-    throw new AppError('Insufficient stock', 400)
-  }
-
-  return toCoffeeDTO(coffee)
-}
-
 export async function updateCoffee(slug: string, payload: UpdateCoffeePayload): Promise<CoffeeDTO> {
   const update: Record<string, unknown> = {}
 
